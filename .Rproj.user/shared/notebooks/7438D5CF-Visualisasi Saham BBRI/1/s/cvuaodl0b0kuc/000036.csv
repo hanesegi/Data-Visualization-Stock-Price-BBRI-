@@ -1,0 +1,48 @@
+"0","plot_ly(dfbri, x =~dfbri$Date) %>% 
+  add_lines( y =~dfbri[,2], name = ""BBRI"") %>% 
+  layout(
+    title = ""        BBRI"",
+    xaxis = list(
+      rangeselector = list(
+        buttons = list(
+          list(
+            count = 1,
+            label = ""1 month"",
+            step = ""month"",
+            stepmode = ""backward""
+          ),
+          list(
+            count = 3, 
+            label = ""3 month"",
+            step = ""month"",
+            stepmode = ""backward""),
+          list(
+            count = 6,
+            label = ""6 month"",
+            step = ""month"",
+            stepmode = ""backward""),
+          list(
+            count = 12,
+            label = ""1 year"",
+            step = ""month"",
+            stepmode = ""backward""
+          ),
+          list(
+            count = 60,
+            label = ""5 year"",
+            step = ""month"",
+            stepmode = ""backward""
+          )
+        )), title = ""Date""),
+    rangeslider = list(type = ""date""),
+    yaxis = list(title = ""Price"")
+)
+"
+"2","Warning: 'layout' objects don't have these attributes: 'rangeslider'
+Valid attributes include:
+'_deprecated', 'activeshape', 'annotations', 'autosize', 'autotypenumbers', 'calendar', 'clickmode', 'coloraxis', 'colorscale', 'colorway', 'computed', 'datarevision', 'dragmode', 'editrevision', 'editType', 'font', 'geo', 'grid', 'height', 'hidesources', 'hoverdistance', 'hoverlabel', 'hovermode', 'images', 'legend', 'mapbox', 'margin', 'meta', 'metasrc', 'modebar', 'newshape', 'paper_bgcolor', 'plot_bgcolor', 'polar', 'scene', 'selectdirection', 'selectionrevision', 'separators', 'shapes', 'showlegend', 'sliders', 'spikedistance', 'template', 'ternary', 'title', 'transition', 'uirevision', 'uniformtext', 'updatemenus', 'width', 'xaxis', 'yaxis', 'barmode', 'bargap', 'mapType'
+"
+"2","Warning: 'layout' objects don't have these attributes: 'rangeslider'
+Valid attributes include:
+'_deprecated', 'activeshape', 'annotations', 'autosize', 'autotypenumbers', 'calendar', 'clickmode', 'coloraxis', 'colorscale', 'colorway', 'computed', 'datarevision', 'dragmode', 'editrevision', 'editType', 'font', 'geo', 'grid', 'height', 'hidesources', 'hoverdistance', 'hoverlabel', 'hovermode', 'images', 'legend', 'mapbox', 'margin', 'meta', 'metasrc', 'modebar', 'newshape', 'paper_bgcolor', 'plot_bgcolor', 'polar', 'scene', 'selectdirection', 'selectionrevision', 'separators', 'shapes', 'showlegend', 'sliders', 'spikedistance', 'template', 'ternary', 'title', 'transition', 'uirevision', 'uniformtext', 'updatemenus', 'width', 'xaxis', 'yaxis', 'barmode', 'bargap', 'mapType'
+"

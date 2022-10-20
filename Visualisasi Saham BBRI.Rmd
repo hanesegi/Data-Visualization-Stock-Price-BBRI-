@@ -1,0 +1,126 @@
+---
+title: "Visualisasi Saham BBRI"
+author: "yohanesegipratama"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+#introduction
+This project will use BBRI stock data sourced from Yahoo Finance to obtain historical stock price data to report stock metrics and performance.
+We use dataset from 21 october 2017 to 21 october 2022
+
+#library
+
+```{r}
+options("install.lock"=FALSE)
+library(dplyr)
+library(tidyr)
+library(lubridate)
+library(ggplot2)
+library(plotly)
+```
+
+#load dataset
+```{r}
+dfbri <- read.csv("data_input/BBRI.JK.csv")
+head(dfbri)
+```
+```{r}
+str(dfbri)
+```
+* insight
+it is known that the data type is in the form of char, the step we will do is formatting according to the form of the data
+
+```{r}
+nrow(dfbri)
+```
+
+
+#cleansing data
+
+```{r}
+dfbri <- dfbri %>%
+  mutate(
+    Date = ymd(Date),
+    Open = as.numeric(Open),
+    High = as.numeric(High),
+    Low = as.numeric(Low),
+    Close = as.numeric(Close),
+    Adj.Close = as.numeric(Adj.Close),
+    Volume = as.numeric(Volume)
+    
+  )
+  
+```
+```{r}
+str(dfbri)
+```
+
+
+#exploratory data analysis
+```{r}
+ggplot(dfbri, aes(x = Close)) +
+  geom_histogram(bins = 30) +
+  xlab("Closing Price of BBRI stock") + ylab("Frequency") +
+  ggtitle("Histogram of BBRI stock closing price")
+```
+
+#
+
+```{r}
+ggplot(dfbri, aes(x = Date, y = Close )) +
+  geom_line() +
+  xlab("Date") + ylab("Closing Price of BBRI stock") +
+  ggtitle("BBRI stock price trend over time")+
+  theme(plot.title = element_text(face = "bold")) +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+<p>*insight</p>
+
+<p>based on the plot that has been made, the trend of the BBRI stock price has fallen or fallen in 2020 but in this visualization we can't see the details so we will make it using plotly</p>
+
+```{r}
+plot_ly(dfbri, x =~dfbri$Date) %>% 
+  add_lines( y =~dfbri[,2], name = "BBRI") %>% 
+  layout(
+    title = "        BBRI",
+    xaxis = list(
+      rangeselector = list(
+        buttons = list(
+          list(
+            count = 1,
+            label = "1 month",
+            step = "month",
+            stepmode = "backward"
+          ),
+          list(
+            count = 3, 
+            label = "3 month",
+            step = "month",
+            stepmode = "backward"),
+          list(
+            count = 6,
+            label = "6 month",
+            step = "month",
+            stepmode = "backward"),
+          list(
+            count = 12,
+            label = "1 year",
+            step = "month",
+            stepmode = "backward"
+          ),
+          list(
+            count = 60,
+            label = "5 year",
+            step = "month",
+            stepmode = "backward"
+          )
+        )), title = "Date"),
+    rangeslider = list(type = "date"),
+    yaxis = list(title = "Price")
+)
+```
+
+*insight
+<p> Based on this visualization plot, it looks detailed and interactive, in July 2020, the stock price fell and its development fluctuated</p>
+
